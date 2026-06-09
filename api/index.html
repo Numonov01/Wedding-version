@@ -1,785 +1,1412 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
-<head>[]
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tohir & Parizoda — To'yga Taklifnoma</title>
-  <meta name="description" content="Quvonchli kunimizda birga bo'ling. 28-iyun kunlari sizni kutamiz." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tohir & Parizoda — To'yga Taklifnoma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #0e0c0a;
+        --bg2: #151210;
+        --bg3: #1c1814;
+        --surface: rgba(255, 255, 255, 0.04);
+        --surface2: rgba(255, 255, 255, 0.07);
+        --gold: #c9a96e;
+        --gold2: #e8c98a;
+        --gold-dim: rgba(201, 169, 110, 0.3);
+        --white: #f5f0e8;
+        --muted: rgba(245, 240, 232, 0.45);
+        --muted2: rgba(245, 240, 232, 0.25);
+        --border: rgba(201, 169, 110, 0.2);
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+      }
+      body {
+        background: var(--bg);
+        color: var(--white);
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
 
-    :root {
-      --cream: #faf6f0;
-      --warm-white: #fff9f3;
-      --blush: #e8c4b0;
-      --rose: #c97d6e;
-      --deep-rose: #a05a4a;
-      --sage: #7a8c6e;
-      --dark-sage: #5a6b50;
-      --gold: #b8956a;
-      --dark: #2c2018;
-      --muted: #8a7060;
-      --border: rgba(185, 149, 106, 0.25);
-    }
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 2px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold-dim);
+      }
 
-    html { scroll-behavior: smooth; }
+      /* ── SECTIONS ── */
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        scroll-snap-align: start;
+        padding: 3rem 1.5rem;
+      }
 
-    body {
-      background: var(--cream);
-      color: var(--dark);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
+      /* ── COVER ── */
+      #cover {
+        background: var(--bg);
+        text-align: center;
+        gap: 1.2rem;
+      }
+      .cover-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 50% 40%,
+            rgba(201, 169, 110, 0.06) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 80% at 20% 80%,
+            rgba(201, 169, 110, 0.04) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 80% at 80% 20%,
+            rgba(201, 169, 110, 0.03) 0%,
+            transparent 60%
+          );
+      }
+      .cover-eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+      .cover-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        color: var(--gold-dim);
+      }
+      .cover-line::before,
+      .cover-line::after {
+        content: "";
+        flex: 1;
+        max-width: 50px;
+        height: 1px;
+        background: currentColor;
+      }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 2rem;
-    }
+      .cover-names {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+        font-size: clamp(2.8rem, 12vw, 5.5rem);
+        line-height: 1;
+        color: var(--white);
+        letter-spacing: 0.02em;
+      }
+      .cover-amp {
+        font-style: italic;
+        color: var(--gold);
+        margin: 0 0.15em;
+      }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 20% 80%, rgba(201,125,110,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(122,140,110,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(232,196,176,0.12) 0%, transparent 70%);
-    }
+      .cover-ayat-ar {
+        font-size: 1.4rem;
+        color: var(--gold2);
+        font-style: normal;
+        direction: rtl;
+        text-shadow: 0 0 30px rgba(201, 169, 110, 0.4);
+        line-height: 1.8;
+      }
+      .cover-ayat-uz {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--muted);
+        max-width: 280px;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .cover-ayat-ref {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        opacity: 0.7;
+      }
 
-    .petal-cluster {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0;
-      animation: fadeInPetal 1.5s ease forwards;
-    }
-    .petal-tl { top: -2rem; left: -2rem; width: 320px; animation-delay: 0.3s; }
-    .petal-tr { top: -1rem; right: -2rem; width: 300px; animation-delay: 0.5s; }
-    .petal-bl { bottom: -2rem; left: -1rem; width: 280px; animation-delay: 0.7s; }
-    .petal-br { bottom: -2rem; right: -2rem; width: 310px; animation-delay: 0.6s; }
+      .cover-date {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+      }
 
-    @keyframes fadeInPetal { to { opacity: 1; } }
+      .open-btn {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(201, 169, 110, 0.1);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 0.9rem 2rem 0.9rem 1rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        color: var(--white);
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+      .open-btn:hover {
+        background: rgba(201, 169, 110, 0.18);
+        border-color: var(--gold);
+      }
+      .open-btn-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .open-btn-icon svg {
+        color: var(--bg);
+        width: 16px;
+        height: 16px;
+      }
 
-    .border-frame {
-      position: absolute;
-      inset: 1.5rem;
-      border: 1px solid var(--border);
-      pointer-events: none;
-    }
-    .border-frame::before {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(185,149,106,0.12);
-    }
+      .scroll-hint {
+        position: absolute;
+        bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--muted2);
+        animation: fadeInUp 1s ease 2s both;
+      }
+      .scroll-hint span {
+        font-size: 0.5rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--gold-dim), transparent);
+        animation: pulse 2s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(0.7);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
 
-    .corner-ornament { position: absolute; width: 40px; height: 40px; }
-    .corner-ornament.tl { top: 1.5rem; left: 1.5rem; }
-    .corner-ornament.tr { top: 1.5rem; right: 1.5rem; transform: scaleX(-1); }
-    .corner-ornament.bl { bottom: 1.5rem; left: 1.5rem; transform: scaleY(-1); }
-    .corner-ornament.br { bottom: 1.5rem; right: 1.5rem; transform: scale(-1); }
+      /* ── INVITATION ── */
+      #invitation {
+        background: var(--bg2);
+        text-align: center;
+        gap: 1.5rem;
+      }
+      .inv-small {
+        font-size: 0.6rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+      .inv-biz {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(4rem, 16vw, 7rem);
+        color: var(--white);
+        line-height: 1;
+      }
+      .inv-text {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 2;
+        max-width: 300px;
+        text-align: center;
+      }
+      .heart-outline {
+        color: var(--gold);
+        font-size: 1.2rem;
+        opacity: 0.6;
+      }
 
-    .hero-content {
-      position: relative;
-      text-align: center;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-    }
-    @keyframes heroReveal { to { opacity: 1; transform: translateY(0); } }
+      /* ── DATE & COUNTDOWN ── */
+      #date-section {
+        background: var(--white);
+        color: var(--bg);
+        gap: 0;
+        padding: 4rem 1.5rem;
+      }
+      #date-section .page-tag {
+        font-size: 0.55rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.5rem;
+      }
+      .big-date {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+        font-size: clamp(3rem, 14vw, 6rem);
+        letter-spacing: 0.05em;
+        color: #1a1410;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .date-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        color: rgba(201, 169, 110, 0.6);
+      }
+      .date-divider::before,
+      .date-divider::after {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: currentColor;
+      }
+      .date-divider svg {
+        width: 12px;
+        height: 12px;
+        color: var(--gold);
+      }
 
-    .hero-eyebrow {
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
+      .cd-label-top {
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #8a7060;
+        margin-bottom: 1.2rem;
+      }
+      .countdown-boxes {
+        display: flex;
+        gap: 0.6rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .cd-box {
+        background: #f0ebe3;
+        border-radius: 10px;
+        padding: 1rem 0.8rem;
+        min-width: 68px;
+        text-align: center;
+        border: 1px solid rgba(185, 149, 106, 0.15);
+      }
+      .cd-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: #2c2018;
+        line-height: 1;
+        display: block;
+      }
+      .cd-lbl {
+        font-size: 0.48rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #b8956a;
+        margin-top: 0.3rem;
+        display: block;
+      }
 
-    .hero-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      line-height: 1;
-      color: var(--dark);
-      letter-spacing: -0.01em;
-      margin-bottom: 0.3rem;
-    }
-    .hero-ampersand { font-style: italic; color: var(--rose); margin: 0 0.2em; }
+      /* Calendar */
+      .cal-month {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #8a7060;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .calendar {
+        width: 100%;
+        max-width: 320px;
+        border-collapse: collapse;
+      }
+      .calendar th {
+        font-size: 0.55rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #b8956a;
+        padding: 0.5rem;
+        text-align: center;
+        font-weight: 400;
+      }
+      .calendar td {
+        text-align: center;
+        padding: 0.55rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        color: #5a4a3a;
+      }
+      .calendar td.today {
+        background: var(--gold);
+        color: white;
+        border-radius: 50%;
+        font-weight: 500;
+        width: 34px;
+        height: 34px;
+      }
+      .time-note {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #8a7060;
+        margin-top: 1.5rem;
+      }
 
-    .hero-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1.8rem auto;
-    }
-    .hero-divider::before, .hero-divider::after {
-      content: '';
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold));
-    }
-    .hero-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
-    .divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+      /* ── TIMELINE ── */
+      #timeline {
+        background: var(--bg3);
+        gap: 0;
+        align-items: flex-start;
+        padding: 4rem 2rem;
+      }
+      .tl-tag {
+        font-size: 0.55rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 3rem;
+        align-self: center;
+        opacity: 0.8;
+      }
+      .tl-item {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+        margin-bottom: 2.5rem;
+        width: 100%;
+        max-width: 320px;
+      }
+      .tl-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+      }
+      .tl-icon svg {
+        width: 28px;
+        height: 28px;
+        stroke-width: 1;
+      }
+      .tl-connector {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        flex-shrink: 0;
+      }
+      .tl-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        flex-shrink: 0;
+        margin-top: 6px;
+      }
+      .tl-dot.active {
+        background: var(--gold2);
+        box-shadow: 0 0 8px var(--gold);
+      }
+      .tl-line {
+        width: 1px;
+        flex: 1;
+        background: var(--border);
+        min-height: 30px;
+      }
+      .tl-body {
+        flex: 1;
+        padding-top: 2px;
+      }
+      .tl-time {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+      .tl-desc {
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
 
-    .hero-date {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      margin-bottom: 3rem;
-    }
+      /* ── VENUE ── */
+      #venue {
+        background: var(--bg);
+        text-align: center;
+        gap: 1.5rem;
+        padding: 4rem 1.5rem;
+      }
+      .venue-tag {
+        font-size: 0.55rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.8;
+      }
+      .venue-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        font-weight: 300;
+        color: var(--white);
+      }
+      .venue-sub {
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .venue-divider {
+        width: 60px;
+        height: 1px;
+        background: var(--gold-dim);
+        margin: 0 auto;
+      }
 
-    /* Countdown */
-    .countdown {
-      display: flex;
-      gap: clamp(1.5rem, 4vw, 3rem);
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-    .countdown-item { text-align: center; }
-    .countdown-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1;
-      color: var(--dark);
-      display: block;
-      min-width: 2ch;
-    }
-    .countdown-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 0.5rem;
-      display: block;
-    }
-    .countdown-sep {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      color: var(--border);
-      align-self: flex-start;
-      padding-top: 0.1rem;
-      line-height: 1.1;
-    }
+      .venue-map {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .venue-map iframe {
+        width: 100%;
+        height: 220px;
+        display: block;
+        border: none;
+        filter: grayscale(0.3);
+      }
 
-    .scroll-cue {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      opacity: 0;
-      animation: heroReveal 1s ease 1.5s forwards;
-    }
-    .scroll-cue span { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; }
-    .scroll-arrow {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s ease infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
-      50% { opacity: 1; transform: scaleY(1); }
-    }
+      .venue-name-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.2rem 2rem;
+        width: 100%;
+        max-width: 380px;
+        text-align: left;
+      }
+      .venue-rest-name {
+        font-family: "Great Vibes", cursive;
+        font-size: 1.8rem;
+        color: var(--white);
+        margin-bottom: 0.3rem;
+      }
+      .venue-address {
+        font-size: 0.75rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .venue-maps-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        color: var(--gold);
+        font-size: 0.62rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .venue-maps-btn:hover {
+        background: var(--gold-dim);
+      }
 
-    /* ── SHARED ── */
-    section {
-      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .section-tag {
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--dark);
-      margin-bottom: 2rem;
-    }
+      /* ── RSVP ── */
+      #rsvp {
+        background: var(--bg2);
+        padding: 4rem 1.5rem;
+        gap: 0;
+      }
+      .rsvp-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 2.5rem 1.8rem;
+        width: 100%;
+        max-width: 420px;
+        color: var(--bg);
+      }
+      .rsvp-tag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+      }
+      .rsvp-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 400;
+        text-align: center;
+        color: #1a1410;
+        margin-bottom: 0.4rem;
+        line-height: 1.2;
+      }
+      .rsvp-sub {
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #8a7060;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .rsvp-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        color: rgba(201, 169, 110, 0.4);
+      }
+      .rsvp-divider::before,
+      .rsvp-divider::after {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: currentColor;
+      }
 
-    /* ── QUOTE ── */
-    .quote-banner {
-      text-align: center;
-      padding: 5rem 2rem;
-      background: linear-gradient(135deg, rgba(201,125,110,0.06) 0%, rgba(184,149,106,0.06) 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .quote-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
-      color: var(--dark);
-      max-width: 600px;
-      margin: 0 auto 1rem;
-      line-height: 1.6;
-    }
-    .quote-attr { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+      .r-label {
+        display: block;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #8a7060;
+        margin-bottom: 0.5rem;
+      }
+      .r-input {
+        width: 100%;
+        background: #f5f0e8;
+        border: 1px solid rgba(185, 149, 106, 0.25);
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        font-family: "Jost", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: #2c2018;
+        outline: none;
+        transition: border-color 0.3s;
+        margin-bottom: 1.2rem;
+        -webkit-appearance: none;
+      }
+      .r-input:focus {
+        border-color: var(--gold);
+      }
 
-    /* ── EVENT CARDS ── */
-    .events-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    @media(max-width: 640px) { .events-grid { grid-template-columns: 1fr; } }
+      /* Guest counter */
+      .guest-counter {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: #f5f0e8;
+        border: 1px solid rgba(185, 149, 106, 0.25);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 0.4rem;
+      }
+      .g-btn {
+        width: 48px;
+        height: 48px;
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        color: #8a7060;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .g-btn:hover {
+        background: rgba(201, 169, 110, 0.15);
+        color: var(--gold);
+      }
+      .g-num {
+        flex: 1;
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #2c2018;
+      }
+      .g-hint {
+        font-size: 0.62rem;
+        color: #a09080;
+        margin-bottom: 1.2rem;
+      }
 
-    .event-card {
-      background: var(--warm-white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2.5rem 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(44,32,24,0.08);
-    }
-    .event-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: linear-gradient(to bottom, var(--rose), var(--gold));
-    }
+      /* Radio */
+      .r-radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1.2rem;
+      }
+      .r-radio {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.8rem 1rem;
+        background: #f5f0e8;
+        border: 1px solid rgba(185, 149, 106, 0.25);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: #5a4a3a;
+        transition: all 0.3s;
+      }
+      .r-radio:hover {
+        border-color: var(--gold);
+      }
+      .r-radio input {
+        display: none;
+      }
+      .r-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(185, 149, 106, 0.4);
+        flex-shrink: 0;
+        position: relative;
+        transition: all 0.3s;
+      }
+      .r-radio.sel {
+        border-color: var(--gold);
+        background: rgba(201, 169, 110, 0.06);
+      }
+      .r-radio.sel .r-dot {
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+      .r-radio.sel .r-dot::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        background: white;
+        border-radius: 50%;
+      }
 
-    .event-type { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
-    .event-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem; font-weight: 400;
-      color: var(--dark); margin-bottom: 1.2rem; line-height: 1.2;
-    }
-    .event-detail {
-      display: flex; align-items: flex-start;
-      gap: 0.75rem; margin-bottom: 0.7rem;
-      font-size: 0.85rem; color: var(--muted);
-    }
-    .event-detail svg { flex-shrink: 0; margin-top: 2px; }
+      .r-textarea {
+        width: 100%;
+        background: #f5f0e8;
+        border: 1px solid rgba(185, 149, 106, 0.25);
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        font-family: "Jost", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #2c2018;
+        outline: none;
+        resize: vertical;
+        min-height: 80px;
+        transition: border-color 0.3s;
+        margin-bottom: 1.2rem;
+      }
+      .r-textarea:focus {
+        border-color: var(--gold);
+      }
 
-    .map-placeholder {
-      margin-top: 1.5rem;
-      border: 1px dashed var(--border);
-      border-radius: 2px;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: rgba(185,149,106,0.03);
-    }
+      .r-submit {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #c9a96e, #a07840);
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-family: "Jost", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 400;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s;
+        position: relative;
+      }
+      .r-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(160, 120, 64, 0.35);
+      }
+      .r-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .r-submit .spinner {
+        display: none;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto;
+      }
+      .r-submit.loading .btn-text {
+        display: none;
+      }
+      .r-submit.loading .spinner {
+        display: block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-    .map-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      padding: 0.65rem 1.2rem;
-      background: transparent;
-      border: 1px solid var(--sage);
-      color: var(--dark-sage);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.72rem; font-weight: 400;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      cursor: pointer; text-decoration: none;
-      border-radius: 1px;
-      transition: all 0.3s ease;
-    }
-    .map-btn:hover { background: var(--sage); color: white; }
+      .r-error {
+        display: none;
+        font-size: 0.75rem;
+        color: #c97d6e;
+        text-align: center;
+        margin-top: 0.7rem;
+        padding: 0.5rem;
+        border: 1px solid rgba(201, 125, 110, 0.3);
+        border-radius: 6px;
+        background: rgba(201, 125, 110, 0.05);
+      }
+      .r-error.show {
+        display: block;
+      }
 
-    /* ── RSVP ── */
-    .form-card {
-      background: var(--warm-white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: clamp(2rem, 5vw, 3.5rem);
-    }
-    .form-group { margin-bottom: 1.5rem; }
-    .form-label {
-      display: block;
-      font-size: 0.68rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem;
-    }
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 1px;
-      padding: 0.85rem 1rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--dark); outline: none;
-      transition: border-color 0.3s ease;
-      -webkit-appearance: none;
-    }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(138,112,96,0.5); }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
-    .form-textarea { resize: vertical; min-height: 100px; }
+      .r-success {
+        display: none;
+        text-align: center;
+        padding: 2rem 0.5rem;
+      }
+      .r-success.show {
+        display: block;
+      }
+      .r-success .s-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .r-success h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        color: #1a1410;
+        margin-bottom: 0.5rem;
+      }
+      .r-success p {
+        font-size: 0.82rem;
+        color: #8a7060;
+        line-height: 1.6;
+      }
 
-    .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    @media(max-width:480px) { .radio-group { grid-template-columns: 1fr; } }
+      /* ── REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-    .radio-label {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.85rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 1px;
-      cursor: pointer; font-size: 0.85rem;
-      color: var(--muted); transition: all 0.3s ease;
-    }
-    .radio-label:hover { border-color: var(--gold); color: var(--dark); }
-    .radio-label input { display: none; }
-    .radio-dot {
-      width: 14px; height: 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 50%; flex-shrink: 0;
-      transition: all 0.3s ease; position: relative;
-    }
-    .radio-label.selected { border-color: var(--rose); color: var(--dark); background: rgba(201,125,110,0.04); }
-    .radio-label.selected .radio-dot { border-color: var(--rose); background: var(--rose); }
-    .radio-label.selected .radio-dot::after {
-      content: ''; position: absolute; inset: 2.5px; background: white; border-radius: 50%;
-    }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    .form-select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7060' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 1rem center;
-      padding-right: 2.5rem; cursor: pointer;
-    }
+      @media (max-width: 380px) {
+        .cover-names {
+          font-size: 2.5rem;
+        }
+        .cd-box {
+          min-width: 58px;
+          padding: 0.8rem 0.5rem;
+        }
+        .cd-num {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ 1. COVER ══ -->
+    <section class="page" id="cover">
+      <div class="cover-bg"></div>
 
-    .submit-btn {
-      width: 100%; padding: 1.1rem;
-      background: linear-gradient(135deg, var(--rose), var(--deep-rose));
-      border: none; color: white;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.72rem; font-weight: 400;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      cursor: pointer; border-radius: 1px;
-      transition: all 0.4s ease; margin-top: 0.5rem;
-      position: relative;
-    }
-    .submit-btn:hover {
-      background: linear-gradient(135deg, var(--deep-rose), #8a4a3a);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(160,90,74,0.3);
-    }
-    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+      <p class="cover-eyebrow reveal">Sizga taklifnoma keldi</p>
 
-    .submit-btn .spinner {
-      display: none;
-      width: 14px; height: 14px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto;
-    }
-    .submit-btn.loading .btn-text { display: none; }
-    .submit-btn.loading .spinner { display: block; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .error-msg {
-      display: none;
-      color: var(--rose);
-      font-size: 0.78rem;
-      margin-top: 0.8rem;
-      text-align: center;
-      padding: 0.6rem;
-      border: 1px solid rgba(201,125,110,0.3);
-      border-radius: 1px;
-      background: rgba(201,125,110,0.05);
-    }
-    .error-msg.show { display: block; }
-
-    .success-msg { display: none; text-align: center; padding: 2.5rem 1rem; }
-    .success-msg.show { display: block; }
-    .success-msg h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; margin-bottom: 0.5rem;
-    }
-    .success-msg p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 4rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .footer-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.8rem; color: var(--rose); margin-bottom: 0.5rem;
-    }
-    .footer-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media(max-width: 480px) {
-      .hero-names { font-size: 3rem; }
-      .countdown { gap: 1rem; }
-      .petal-tl, .petal-tr, .petal-bl, .petal-br { width: 180px; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- ── HERO ── -->
-<div id="hero">
-  <div class="hero-bg"></div>
-
-  <div class="border-frame"></div>
-
-  <!-- SVG Petals TL -->
-  <svg class="petal-cluster petal-tl" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="180" cy="80" rx="80" ry="55" fill="#e8c4b0" fill-opacity="0.5" transform="rotate(-30 180 80)"/>
-    <ellipse cx="220" cy="130" rx="70" ry="45" fill="#c97d6e" fill-opacity="0.35" transform="rotate(20 220 130)"/>
-    <ellipse cx="120" cy="150" rx="90" ry="55" fill="#e8c4b0" fill-opacity="0.4" transform="rotate(-10 120 150)"/>
-    <ellipse cx="160" cy="60" rx="55" ry="35" fill="#b8956a" fill-opacity="0.25" transform="rotate(40 160 60)"/>
-    <ellipse cx="80" cy="100" rx="65" ry="40" fill="#c97d6e" fill-opacity="0.2" transform="rotate(-50 80 100)"/>
-    <circle cx="190" cy="95" r="8" fill="#b8956a" fill-opacity="0.6"/>
-    <circle cx="145" cy="75" r="5" fill="#c97d6e" fill-opacity="0.4"/>
-    <path d="M150 200 Q130 160 100 140" stroke="#7a8c6e" stroke-width="1.5" fill="none" opacity="0.4"/>
-    <path d="M180 210 Q200 170 220 150" stroke="#7a8c6e" stroke-width="1" fill="none" opacity="0.3"/>
-  </svg>
-
-  <!-- SVG Petals TR -->
-  <svg class="petal-cluster petal-tr" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="120" cy="90" rx="85" ry="60" fill="#d4a8c7" fill-opacity="0.45" transform="rotate(25 120 90)"/>
-    <ellipse cx="170" cy="140" rx="75" ry="50" fill="#e8c4b0" fill-opacity="0.4" transform="rotate(-15 170 140)"/>
-    <ellipse cx="80" cy="160" rx="80" ry="50" fill="#c97d6e" fill-opacity="0.3" transform="rotate(10 80 160)"/>
-    <ellipse cx="200" cy="80" rx="60" ry="38" fill="#d4a8c7" fill-opacity="0.35" transform="rotate(-35 200 80)"/>
-    <circle cx="130" cy="105" r="10" fill="#b8956a" fill-opacity="0.5"/>
-    <path d="M100 190 Q80 160 70 130" stroke="#7a8c6e" stroke-width="1.5" fill="none" opacity="0.4"/>
-  </svg>
-
-  <!-- SVG Petals BL -->
-  <svg class="petal-cluster petal-bl" viewBox="0 0 280 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="150" cy="120" rx="90" ry="60" fill="#e8c4b0" fill-opacity="0.5" transform="rotate(15 150 120)"/>
-    <ellipse cx="100" cy="80" rx="70" ry="45" fill="#b8956a" fill-opacity="0.3" transform="rotate(-20 100 80)"/>
-    <ellipse cx="200" cy="150" rx="80" ry="50" fill="#c97d6e" fill-opacity="0.35" transform="rotate(30 200 150)"/>
-    <circle cx="155" cy="115" r="9" fill="#b8956a" fill-opacity="0.6"/>
-    <path d="M140 50 Q150 80 145 110" stroke="#7a8c6e" stroke-width="2" fill="none" opacity="0.4"/>
-    <ellipse cx="90" cy="160" rx="50" ry="30" fill="#d4a8c7" fill-opacity="0.3" transform="rotate(-10 90 160)"/>
-  </svg>
-
-  <!-- SVG Petals BR -->
-  <svg class="petal-cluster petal-br" viewBox="0 0 310 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="150" cy="130" rx="95" ry="65" fill="#7a8c6e" fill-opacity="0.2" transform="rotate(-20 150 130)"/>
-    <ellipse cx="180" cy="100" rx="80" ry="50" fill="#e8c4b0" fill-opacity="0.45" transform="rotate(15 180 100)"/>
-    <ellipse cx="100" cy="160" rx="70" ry="45" fill="#c97d6e" fill-opacity="0.35" transform="rotate(-30 100 160)"/>
-    <ellipse cx="230" cy="160" rx="60" ry="38" fill="#b8956a" fill-opacity="0.3" transform="rotate(40 230 160)"/>
-    <circle cx="168" cy="112" r="11" fill="#b8956a" fill-opacity="0.55"/>
-    <circle cx="125" cy="140" r="6" fill="#c97d6e" fill-opacity="0.4"/>
-  </svg>
-
-  <!-- Corner ornaments -->
-  <svg class="corner-ornament tl" viewBox="0 0 40 40" fill="none">
-    <path d="M2 2 L20 2 M2 2 L2 20" stroke="#b8956a" stroke-width="1" stroke-opacity="0.6"/>
-    <circle cx="2" cy="2" r="2" fill="#b8956a" fill-opacity="0.6"/>
-  </svg>
-  <svg class="corner-ornament tr" viewBox="0 0 40 40" fill="none">
-    <path d="M2 2 L20 2 M2 2 L2 20" stroke="#b8956a" stroke-width="1" stroke-opacity="0.6"/>
-    <circle cx="2" cy="2" r="2" fill="#b8956a" fill-opacity="0.6"/>
-  </svg>
-  <svg class="corner-ornament bl" viewBox="0 0 40 40" fill="none">
-    <path d="M2 2 L20 2 M2 2 L2 20" stroke="#b8956a" stroke-width="1" stroke-opacity="0.6"/>
-    <circle cx="2" cy="2" r="2" fill="#b8956a" fill-opacity="0.6"/>
-  </svg>
-  <svg class="corner-ornament br" viewBox="0 0 40 40" fill="none">
-    <path d="M2 2 L20 2 M2 2 L2 20" stroke="#b8956a" stroke-width="1" stroke-opacity="0.6"/>
-    <circle cx="2" cy="2" r="2" fill="#b8956a" fill-opacity="0.6"/>
-  </svg>
-
-  <!-- Content -->
-  <div class="hero-content">
-    <p class="hero-eyebrow">Quvonchli kunimizda yonimizda bo'ling</p>
-    <h1 class="hero-names">
-      Tohir<span class="hero-ampersand">&</span>Parizoda
-    </h1>
-    <div class="hero-divider"><div class="divider-diamond"></div></div>
-    <p class="hero-date">28 Iyun, 2026</p>
-
-    <div class="countdown">
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-days">00</span>
-        <span class="countdown-label">Kun</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-hours">00</span>
-        <span class="countdown-label">Soat</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-mins">00</span>
-        <span class="countdown-label">Daqiqa</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-secs">00</span>
-        <span class="countdown-label">Soniya</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-cue">
-    <span>Pastga</span>
-    <div class="scroll-arrow"></div>
-  </div>
-</div>
-
-<!-- ── QUOTE ── -->
-<div class="quote-banner reveal">
-  <p class="quote-text">"Ikki yurak bir-birini topa olganda — hayot eng go'zal she'rga aylanadi."</p>
-  <p class="quote-attr">— Tohir & Parizoda</p>
-</div>
-
-<!-- ── EVENTS ── -->
-<section id="events">
-  <div class="reveal" style="margin-bottom: 2.5rem;">
-    <p class="section-tag">Tadbirlar</p>
-    <h2 class="section-title">To'y dasturi</h2>
-  </div>
-
-  <div class="events-grid">
-    <!-- Nahorgi osh -->
-    <div class="event-card reveal">
-      <p class="event-type">28-Iyun · Soat 18:00</p>
-      <h3 class="event-name">Nahorgi Osh</h3>
-      <div class="event-detail">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      <div class="cover-line reveal" style="transition-delay: 0.1s">
+        <svg width="10" height="10" viewBox="0 0 10 10">
+          <path
+            d="M5 0L6.2 3.8H10L7 6.2 8.1 10 5 7.6 1.9 10 3 6.2 0 3.8H3.8Z"
+            fill="currentColor"
+          />
         </svg>
-        <span>28-iyun, 2026 — soat 18:00</span>
       </div>
-      <div class="event-detail">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+
+      <h1 class="cover-names reveal" style="transition-delay: 0.2s">
+        Tohir<span class="cover-amp">&</span>Parizoda
+      </h1>
+
+      <p class="cover-date reveal" style="transition-delay: 0.3s">
+        28 · 06 · 2026
+      </p>
+
+      <p class="cover-ayat-ar reveal" style="transition-delay: 0.4s">
+        وَاَلَّفَ بَيۡنَ قُلُوۡبِهِمۡ
+      </p>
+      <p class="cover-ayat-uz reveal" style="transition-delay: 0.45s">
+        "Va U ularning qalblarini birlashtirdi"
+      </p>
+      <p class="cover-ayat-ref reveal" style="transition-delay: 0.5s">
+        Al-Anfol, 63
+      </p>
+
+      <a
+        href="#invitation"
+        class="open-btn reveal"
+        style="transition-delay: 0.6s"
+      >
+        <span class="open-btn-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+          </svg>
+        </span>
+        Ochish
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
-        <span>Manzil kiritiladi</span>
-      </div>
-      <div class="map-placeholder">
-        🗺 Xarita qo'shiladi
-      </div>
-      <a href="#" class="map-btn" onclick="return false;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Kartada ko'rsatish
       </a>
-    </div>
 
-    <!-- Nikoh to'yi -->
-    <div class="event-card reveal" style="transition-delay: 0.15s;">
-      <p class="event-type">28-Iyun · Soat 18:00</p>
-      <h3 class="event-name">Nikoh To'yi</h3>
-      <div class="event-detail">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ══ 2. INVITATION ══ -->
+    <section class="page" id="invitation" style="background: var(--bg2)">
+      <p class="inv-small reveal">Qadrli azizlarimiz!</p>
+      <p class="inv-biz reveal" style="transition-delay: 0.1s">Biz</p>
+      <p class="inv-text reveal" style="transition-delay: 0.2s">
+        Sizlarni to'yimizga taklif<br />etishdan juda xursandmiz
+      </p>
+      <p class="heart-outline reveal" style="transition-delay: 0.3s">♡</p>
+    </section>
+
+    <!-- ══ 3. DATE + COUNTDOWN + CALENDAR ══ -->
+    <section
+      class="page"
+      id="date-section"
+      style="background: var(--white); color: var(--bg)"
+    >
+      <p class="page-tag reveal">Sana</p>
+
+      <p class="big-date reveal" style="transition-delay: 0.1s">28 06 2026</p>
+
+      <div class="date-divider reveal" style="transition-delay: 0.15s">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          style="width: 14px; height: 14px; color: var(--gold)"
+        >
+          <path
+            d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6z"
+          />
         </svg>
-        <span>28-iyun, 2026 — soat 18:00</span>
-      </div>
-      <div class="event-detail">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-        </svg>
-        <span>Manzil kiritiladi</span>
-      </div>
-      <div class="map-placeholder">
-        🗺 Xarita qo'shiladi
-      </div>
-      <a href="#" class="map-btn" onclick="return false;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Kartada ko'rsatish
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── RSVP ── -->
-<section id="rsvp" style="max-width: 600px;">
-  <div class="reveal" style="margin-bottom: 2rem;">
-    <p class="section-tag">Tasdiqlash</p>
-    <h2 class="section-title">Kelishingizni tasdiqlang</h2>
-  </div>
-
-  <div class="form-card reveal">
-    <div id="rsvp-form-area">
-      <div class="form-group">
-        <label class="form-label" for="fname">Ism va Familiyangiz</label>
-        <input class="form-input" type="text" id="fname" placeholder="Ism Familiya" autocomplete="name" />
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Tashrif buyurasizmi?</label>
-        <div class="radio-group">
-          <label class="radio-label" onclick="selectRadio(this)">
-            <input type="radio" name="attending" value="yes" />
-            <span class="radio-dot"></span>
-            Ha, albatta boraman
-          </label>
-          <label class="radio-label" onclick="selectRadio(this)">
-            <input type="radio" name="attending" value="no" />
-            <span class="radio-dot"></span>
-            Ming bor uzr, borolmayman
-          </label>
+      <p class="cd-label-top reveal" style="transition-delay: 0.2s">
+        To'ygacha qolgan vaqt
+      </p>
+
+      <div class="countdown-boxes reveal" style="transition-delay: 0.25s">
+        <div class="cd-box">
+          <span class="cd-num" id="cd-d">00</span
+          ><span class="cd-lbl">Kun</span>
+        </div>
+        <div class="cd-box">
+          <span class="cd-num" id="cd-h">00</span
+          ><span class="cd-lbl">Soat</span>
+        </div>
+        <div class="cd-box">
+          <span class="cd-num" id="cd-m">00</span
+          ><span class="cd-lbl">Daqiqa</span>
+        </div>
+        <div class="cd-box">
+          <span class="cd-num" id="cd-s">00</span
+          ><span class="cd-lbl">Soniya</span>
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="guests">Necha kishi bo'lib kelasiz?</label>
-        <select class="form-select" id="guests">
-          <option>1 kishi</option>
-          <option>2 kishi</option>
-          <option>3 kishi</option>
-          <option>4 kishi yoki undan ko'p</option>
-        </select>
+      <div
+        class="reveal"
+        style="
+          transition-delay: 0.3s;
+          width: 100%;
+          max-width: 320px;
+          text-align: center;
+        "
+      >
+        <p class="cal-month">Iyun 2026</p>
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>Du</th>
+              <th>Se</th>
+              <th>Ch</th>
+              <th>Pa</th>
+              <th>Ju</th>
+              <th>Sh</th>
+              <th>Ya</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>16</td>
+              <td>17</td>
+              <td>18</td>
+              <td>19</td>
+              <td>20</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>23</td>
+              <td>24</td>
+              <td>25</td>
+              <td>26</td>
+              <td>27</td>
+              <td class="today">28</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>30</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="time-note">Boshlanishi 18:00 da</p>
+      </div>
+    </section>
+
+    <!-- ══ 4. TIMELINE ══ -->
+    <section class="page" id="timeline">
+      <p class="tl-tag reveal">Dastur</p>
+
+      <div class="tl-item reveal" style="transition-delay: 0.1s">
+        <div class="tl-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 3h18v2a6 6 0 01-6 6H9a6 6 0 01-6-6V3z" />
+            <path d="M3 3l9 9 9-9M12 12v9" />
+            <path d="M8 21h8" />
+          </svg>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          "
+        >
+          <div class="tl-dot active"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <p class="tl-time">18:00</p>
+          <p class="tl-desc">Nahorgi Osh</p>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="wishes">Yoshlarga tilaklaringiz (ixtiyoriy)</label>
-        <textarea class="form-textarea" id="wishes" placeholder="Baxtli bo'linglar!"></textarea>
+      <div class="tl-item reveal" style="transition-delay: 0.2s">
+        <div class="tl-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+            />
+          </svg>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          "
+        >
+          <div class="tl-dot"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <p class="tl-time">19:00</p>
+          <p class="tl-desc">Nikoh To'yi — Marosim</p>
+        </div>
       </div>
 
-      <button class="submit-btn" id="submitBtn" onclick="submitRSVP()">
-        <span class="btn-text">Tasdiqlash</span>
-        <div class="spinner"></div>
-      </button>
-
-      <div class="error-msg" id="errorMsg">
-        Xatolik yuz berdi. Iltimos qayta urinib ko'ring.
+      <div class="tl-item reveal" style="transition-delay: 0.3s">
+        <div class="tl-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 11l19-9-9 19-2-8-8-2z" />
+          </svg>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          "
+        >
+          <div class="tl-dot"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <p class="tl-time">20:00</p>
+          <p class="tl-desc">Bayram Dasturxoni</p>
+        </div>
       </div>
-    </div>
 
-    <div class="success-msg" id="success-msg">
-      <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌸</div>
-      <h3>Rahmat!</h3>
-      <p>Tashrifingiz tasdiqlandi.<br>Sizni kutib qolamiz!</p>
-    </div>
-  </div>
-</section>
+      <div class="tl-item reveal" style="transition-delay: 0.4s">
+        <div class="tl-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 3l14 9-14 9V3z" />
+          </svg>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          "
+        >
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <p class="tl-time">23:00</p>
+          <p class="tl-desc">Yakuni</p>
+        </div>
+      </div>
+    </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="hero-divider" style="margin-bottom: 1.5rem;">
-    <div class="divider-diamond"></div>
-  </div>
-  <p class="footer-names">Tohir & Parizoda</p>
-  <p class="footer-sub">28 Iyun, 2026</p>
-</footer>
+    <!-- ══ 5. VENUE ══ -->
+    <section class="page" id="venue">
+      <p class="venue-tag reveal">O'tkazilish joyi</p>
+      <h2 class="venue-title reveal" style="transition-delay: 0.1s">Manzil</h2>
+      <div class="venue-divider reveal" style="transition-delay: 0.15s"></div>
+      <p class="venue-sub reveal" style="transition-delay: 0.2s">
+        Where love meets elegance
+      </p>
 
-<script>
-  /* ── Countdown ── */
-  function updateCountdown() {
-    const target = new Date('2026-06-28T18:00:00+05:00');
-    const now    = new Date();
-    const diff   = target - now;
-    const pad    = n => String(Math.max(0, n)).padStart(2, '0');
+      <div class="venue-map reveal" style="transition-delay: 0.25s">
+        <!-- Manzilni kiriting va iframe linkni o'zgartiring -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.0!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDE3JzU4LjIiTiA2OcKwMTQnMjQuNCJF!5e0!3m2!1suz!2suz!4v1234567890"
+          allowfullscreen
+          loading="lazy"
+          title="To'y manzili"
+        >
+        </iframe>
+      </div>
 
-    if (diff <= 0) {
-      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
-        document.getElementById(id).textContent = '00';
-      });
-      return;
-    }
-    document.getElementById('cd-days').textContent  = pad(Math.floor(diff / 86400000));
-    document.getElementById('cd-hours').textContent = pad(Math.floor((diff % 86400000) / 3600000));
-    document.getElementById('cd-mins').textContent  = pad(Math.floor((diff % 3600000) / 60000));
-    document.getElementById('cd-secs').textContent  = pad(Math.floor((diff % 60000) / 1000));
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+      <div class="venue-name-card reveal" style="transition-delay: 0.3s">
+        <p class="venue-rest-name">Restoran nomi</p>
+        <p class="venue-address" id="venue-address">Manzil kiritiladi</p>
+        <a href="#" class="venue-maps-btn" id="maps-link">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          Google Maps
+        </a>
+      </div>
+    </section>
 
-  /* ── Scroll reveal ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <!-- ══ 6. RSVP ══ -->
+    <section class="page" id="rsvp">
+      <div class="rsvp-card reveal">
+        <div id="rsvp-form">
+          <p class="rsvp-tag">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path
+                d="M5 0L6.2 3.8H10L7 6.2 8.1 10 5 7.6 1.9 10 3 6.2 0 3.8H3.8Z"
+                fill="currentColor"
+              />
+            </svg>
+            R.S.V.P.
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path
+                d="M5 0L6.2 3.8H10L7 6.2 8.1 10 5 7.6 1.9 10 3 6.2 0 3.8H3.8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </p>
+          <h2 class="rsvp-title">Ishtirokingizni tasdiqlang</h2>
+          <p class="rsvp-sub">Biz bilan birga bo'ling</p>
+          <div class="rsvp-divider">♡</div>
 
-  /* ── Radio ── */
-  function selectRadio(label) {
-    document.querySelectorAll('.radio-label').forEach(l => l.classList.remove('selected'));
-    label.classList.add('selected');
-    label.querySelector('input').checked = true;
-  }
+          <!-- Name -->
+          <label class="r-label" for="r-name">Mehmon ismi</label>
+          <input
+            class="r-input"
+            type="text"
+            id="r-name"
+            placeholder="Ism Familiya"
+            autocomplete="name"
+          />
 
-  /* ── RSVP → Telegram ── */
-  async function submitRSVP() {
-    const name     = document.getElementById('fname').value.trim();
-    const attending = document.querySelector('input[name="attending"]:checked');
-    const guests   = document.getElementById('guests').value;
-    const wishes   = document.getElementById('wishes').value.trim();
-    const btn      = document.getElementById('submitBtn');
-    const errBox   = document.getElementById('errorMsg');
+          <!-- Guest count -->
+          <label class="r-label">Mehmonlar soni</label>
+          <div class="guest-counter">
+            <button class="g-btn" onclick="changeGuests(-1)">−</button>
+            <span class="g-num" id="g-count">1</span>
+            <button class="g-btn" onclick="changeGuests(1)">+</button>
+          </div>
+          <p class="g-hint">1 dan 10 tagacha mehmon</p>
 
-    errBox.classList.remove('show');
+          <!-- Attending -->
+          <label class="r-label">To'yga kelasizmi?</label>
+          <div class="r-radio-group">
+            <label class="r-radio" onclick="selRadio(this)">
+              <input type="radio" name="att" value="yes" />
+              <span class="r-dot"></span>
+              ✓ Ha, mamnuniyat bilan
+            </label>
+            <label class="r-radio" onclick="selRadio(this)">
+              <input type="radio" name="att" value="no" />
+              <span class="r-dot"></span>
+              ✗ Afsuski, kela olmayman
+            </label>
+          </div>
 
-    if (!name)      { alert('Iltimos, ismingizni kiriting.'); return; }
-    if (!attending) { alert('Iltimos, tashrif buyurasizmi yoki yo\'qligini tanlang.'); return; }
+          <!-- Wishes -->
+          <label class="r-label" for="r-wish">Izoh (ixtiyoriy)</label>
+          <textarea
+            class="r-textarea"
+            id="r-wish"
+            placeholder="Yoshlarga tilaklaringiz..."
+          ></textarea>
 
-    btn.disabled = true;
-    btn.classList.add('loading');
+          <button class="r-submit" id="r-btn" onclick="submitRSVP()">
+            <span class="btn-text">Tasdiqlash</span>
+            <div class="spinner"></div>
+          </button>
+          <div class="r-error" id="r-err"></div>
+        </div>
 
-    try {
-      const res = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          attending: attending.value,
-          guests,
-          wishes
-        })
-      });
+        <div class="r-success" id="r-success">
+          <div class="s-icon">🌸</div>
+          <h3>Rahmat!</h3>
+          <p>Tashrifingiz tasdiqlandi.<br />Sizni kutib qolamiz!</p>
+        </div>
+      </div>
+    </section>
 
-      const data = await res.json();
+    <script>
+      /* ── Countdown ── */
+      function tick() {
+        const t = new Date("2026-06-28T18:00:00+05:00") - new Date();
+        const p = (n) => String(Math.max(0, n)).padStart(2, "0");
+        if (t <= 0) {
+          ["cd-d", "cd-h", "cd-m", "cd-s"].forEach(
+            (id) => (document.getElementById(id).textContent = "00"),
+          );
+          return;
+        }
+        document.getElementById("cd-d").textContent = p(
+          Math.floor(t / 86400000),
+        );
+        document.getElementById("cd-h").textContent = p(
+          Math.floor((t % 86400000) / 3600000),
+        );
+        document.getElementById("cd-m").textContent = p(
+          Math.floor((t % 3600000) / 60000),
+        );
+        document.getElementById("cd-s").textContent = p(
+          Math.floor((t % 60000) / 1000),
+        );
+      }
+      tick();
+      setInterval(tick, 1000);
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Xato');
+      /* ── Reveal ── */
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      /* ── Guest counter ── */
+      let guests = 1;
+      function changeGuests(d) {
+        guests = Math.min(10, Math.max(1, guests + d));
+        document.getElementById("g-count").textContent = guests;
       }
 
-      document.getElementById('rsvp-form-area').style.display = 'none';
-      document.getElementById('success-msg').classList.add('show');
+      /* ── Radio ── */
+      function selRadio(label) {
+        document
+          .querySelectorAll(".r-radio")
+          .forEach((l) => l.classList.remove("sel"));
+        label.classList.add("sel");
+        label.querySelector("input").checked = true;
+      }
 
-    } catch (err) {
-      errBox.textContent = 'Xatolik: ' + err.message + '. Iltimos qayta urinib ko\'ring.';
-      errBox.classList.add('show');
-      btn.disabled = false;
-      btn.classList.remove('loading');
-    }
-  }
-</script>
-</body>
+      /* ── RSVP submit ── */
+      async function submitRSVP() {
+        const name = document.getElementById("r-name").value.trim();
+        const att = document.querySelector('input[name="att"]:checked');
+        const wish = document.getElementById("r-wish").value.trim();
+        const btn = document.getElementById("r-btn");
+        const err = document.getElementById("r-err");
+
+        err.classList.remove("show");
+        if (!name) {
+          alert("Iltimos, ismingizni kiriting.");
+          return;
+        }
+        if (!att) {
+          alert("Iltimos, tashrif buyurasizmi yoki yo'qligini tanlang.");
+          return;
+        }
+
+        btn.disabled = true;
+        btn.classList.add("loading");
+
+        try {
+          const res = await fetch("/api/rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name,
+              attending: att.value,
+              guests,
+              wishes: wish,
+            }),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) throw new Error(data.error || "Xato");
+          document.getElementById("rsvp-form").style.display = "none";
+          document.getElementById("r-success").classList.add("show");
+        } catch (e) {
+          err.textContent = "Xatolik: " + e.message + ". Qayta urinib ko'ring.";
+          err.classList.add("show");
+          btn.disabled = false;
+          btn.classList.remove("loading");
+        }
+      }
+    </script>
+  </body>
 </html>
