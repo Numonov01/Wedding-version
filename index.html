@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tohir & Parizoda — To'yga Taklifnoma</title>
+    <title>Olim & Marjona — To'yga Taklifnoma</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +35,10 @@
       html,
       body {
         height: 100%;
+        min-height: 100dvh;
         overflow: hidden;
+        overflow-x: hidden;
+        overscroll-behavior: none;
       }
       body {
         background: var(--bg);
@@ -48,12 +51,19 @@
       #app {
         position: fixed;
         inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
         overflow: hidden;
+        overflow-x: hidden;
       }
 
       .page {
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -66,12 +76,53 @@
           transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         transform: translateY(30px);
         overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior-y: contain;
         -webkit-overflow-scrolling: touch;
       }
       .page.active {
         opacity: 1;
         pointer-events: all;
         transform: translateY(0);
+      }
+
+      /* Soft photo backgrounds for selected pages */
+      .page.bg-photo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--page-bg-image);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(2px) saturate(0.9);
+        opacity: 0.42;
+        transform: scale(1.03);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .page.bg-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            165deg,
+            rgba(14, 12, 10, 0.56) 0%,
+            rgba(24, 20, 16, 0.5) 45%,
+            rgba(14, 12, 10, 0.6) 100%
+          ),
+          radial-gradient(
+            circle at 20% 15%,
+            rgba(201, 169, 110, 0.12) 0%,
+            transparent 45%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .page.bg-photo > * {
+        position: relative;
+        z-index: 1;
       }
 
       /* progress dots */
@@ -134,6 +185,7 @@
         background: var(--bg);
         gap: 1rem;
         text-align: center;
+        --page-bg-image: url("images/1.JPG");
       }
       .cover-bg {
         position: absolute;
@@ -287,6 +339,7 @@
         background: var(--bg2);
         gap: 1.5rem;
         text-align: center;
+        --page-bg-image: url("images/2.JPG");
       }
       .inv-small {
         font-size: 0.6rem;
@@ -323,6 +376,7 @@
         gap: 0;
         justify-content: center;
         overflow: hidden;
+        --page-bg-image: url("images/4.JPG");
       }
       .p2-inner {
         width: 100%;
@@ -436,11 +490,36 @@
         color: #8a7060;
       }
 
+      /* Better contrast for DATE page when photo background is enabled */
+      #p2.bg-photo {
+        color: #f8f2ea;
+      }
+      #p2.bg-photo .page-tag,
+      #p2.bg-photo .cal-month,
+      #p2.bg-photo .time-note,
+      #p2.bg-photo .cd-label-top {
+        color: rgba(245, 240, 232, 0.82);
+      }
+      #p2.bg-photo .big-date {
+        color: #fff7ec;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+      }
+      #p2.bg-photo .calendar th {
+        color: rgba(232, 201, 138, 0.95);
+      }
+      #p2.bg-photo .calendar td {
+        color: rgba(245, 240, 232, 0.9);
+      }
+      #p2.bg-photo .date-divider {
+        color: rgba(232, 201, 138, 0.7);
+      }
+
       /* ══ 4. TIMELINE ══ */
       #p3 {
         background: var(--bg3);
         padding: 3rem 1.5rem;
         justify-content: center;
+        --page-bg-image: url("images/3.JPG");
       }
       .tl-wrap {
         width: 100%;
@@ -528,6 +607,7 @@
         gap: 1.2rem;
         text-align: center;
         padding: 3rem 1.5rem;
+        --page-bg-image: url("images/4.JPG");
       }
       .venue-tag {
         font-size: 0.55rem;
@@ -887,6 +967,9 @@
       ::-webkit-scrollbar {
         width: 2px;
       }
+      ::-webkit-scrollbar:horizontal {
+        height: 0;
+      }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
@@ -914,15 +997,13 @@
 
     <div id="app">
       <!-- ══ PAGE 0: COVER ══ -->
-      <div class="page active" id="p0">
+      <div class="page bg-photo active" id="p0">
         <div class="cover-bg"></div>
 
         <p class="cover-eyebrow">Sizga taklifnoma keldi</p>
         <p class="cover-star">★</p>
-        <h1 class="cover-names">
-          Tohir<span class="cover-amp">&</span>Parizoda
-        </h1>
-        <p class="cover-date">28 · 06 · 2026</p>
+        <h1 class="cover-names">Olim<span class="cover-amp">&</span>Marjona</h1>
+        <p class="cover-date">29 · 08 · 2026</p>
         <p class="cover-ayat-ar">وَاَلَّفَ بَيۡنَ قُلُوۡبِهِمۡ</p>
         <p class="cover-ayat-uz">"Va U ularning qalblarini birlashtirdi"</p>
         <p class="cover-ayat-ref">Al-Anfol, 63</p>
@@ -957,7 +1038,7 @@
       </div>
 
       <!-- ══ PAGE 1: INVITATION ══ -->
-      <div class="page" id="p1">
+      <div class="page bg-photo" id="p1">
         <p class="inv-small">Qadrli azizlarimiz!</p>
         <p class="inv-biz">Biz</p>
         <p class="inv-text">
@@ -980,10 +1061,10 @@
       </div>
 
       <!-- ══ PAGE 2: DATE + COUNTDOWN + CALENDAR ══ -->
-      <div class="page" id="p2">
+      <div class="page bg-photo" id="p2">
         <div class="p2-inner">
           <p class="page-tag">Sana</p>
-          <p class="big-date">28 06 2026</p>
+          <p class="big-date">29 08 2026</p>
           <div class="date-divider">♡</div>
           <p class="cd-label-top">To'ygacha qolgan vaqt</p>
           <div class="countdown-boxes">
@@ -1004,7 +1085,7 @@
               ><span class="cd-lbl">Soniya</span>
             </div>
           </div>
-          <p class="cal-month">Iyun 2026</p>
+          <p class="cal-month">Avgust 2026</p>
           <table class="calendar">
             <thead>
               <tr>
@@ -1019,44 +1100,44 @@
             </thead>
             <tbody>
               <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>1</td>
                 <td>2</td>
+              </tr>
+              <tr>
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
                 <td>6</td>
                 <td>7</td>
-              </tr>
-              <tr>
                 <td>8</td>
                 <td>9</td>
+              </tr>
+              <tr>
                 <td>10</td>
                 <td>11</td>
                 <td>12</td>
                 <td>13</td>
                 <td>14</td>
-              </tr>
-              <tr>
                 <td>15</td>
                 <td>16</td>
+              </tr>
+              <tr>
                 <td>17</td>
                 <td>18</td>
                 <td>19</td>
                 <td>20</td>
                 <td>21</td>
-              </tr>
-              <tr>
                 <td>22</td>
-                <td>23</td>
-                <td>24</td>
-                <td>25</td>
-                <td>26</td>
-                <td>27</td>
-                <td class="wedding-day">28</td>
+                <td class="wedding-day">29</td>
               </tr>
               <tr>
-                <td>29</td>
                 <td>30</td>
+                <td>31</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -1083,7 +1164,7 @@
       </div>
 
       <!-- ══ PAGE 3: TIMELINE ══ -->
-      <div class="page" id="p3">
+      <div class="page bg-photo" id="p3">
         <div class="tl-wrap">
           <p class="tl-tag">Dastur</p>
 
@@ -1413,7 +1494,7 @@
       </div>
 
       <!-- ══ PAGE 4: VENUE ══ -->
-      <div class="page" id="p4">
+      <div class="page bg-photo" id="p4">
         <p class="venue-tag">O'tkazilish joyi</p>
         <h2 class="venue-title">Manzil</h2>
         <div class="venue-hdiv"></div>
@@ -1699,7 +1780,7 @@
 
       /* ══ COUNTDOWN ══ */
       function tick() {
-        const t = new Date("2026-06-28T19:00:00+05:00") - new Date();
+        const t = new Date("2026-08-29T19:00:00+05:00") - new Date();
         const p = (n) => String(Math.max(0, n)).padStart(2, "0");
         if (t <= 0) {
           ["cd-d", "cd-h", "cd-m", "cd-s"].forEach(
