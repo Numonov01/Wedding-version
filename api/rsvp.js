@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 👥 *Kishilar soni:* ${guests || "1 kishi"}
 💬 *Tilak:* ${wishes || "—"}
 
-📅 28-iyun, 2026
+📅 29-avgust, 2026
   `.trim();
 
   try {
